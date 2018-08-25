@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 
-group = 'com.github.mpinard.jbrains.tdd'
+group = 'mpinard.jbrains.tdd'
 version = '0.1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
