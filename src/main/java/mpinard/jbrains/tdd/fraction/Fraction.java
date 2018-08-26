@@ -18,7 +18,9 @@ public class Fraction {
     }
     
     public String toString() {
-        return String.format("%s/%s", numerator, denominator);
+        return denominator == 1
+            ? String.valueOf(numerator)
+            : String.format("%s/%s", numerator, denominator);
     }
     
 }

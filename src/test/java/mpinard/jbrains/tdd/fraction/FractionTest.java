@@ -17,10 +17,17 @@ public class FractionTest {
     }
     
     @Test
-    public void Given_Fraction_When_ToString_Then_FormatIsAsExpected() {
+    public void Given_FractionWithDenominator_When_ToString_Then_FormatIsAsExpected() {
         assertThat(Fraction.of(1, 2).toString()).isEqualTo("1/2");
         assertThat(Fraction.of(3, 4).toString()).isEqualTo("3/4");
         assertThat(Fraction.of(7, 8).toString()).isEqualTo("7/8");
     }
+
+    @Test
+    public void Given_WholeNumberFraction_When_ToString_Then_FormatIsAsExpected() {
+        assertThat(Fraction.of(0).toString()).isEqualTo("0");
+    }
+    
+    
     
 }
