@@ -12,11 +12,6 @@ public class FractionTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void When_ZeroPlusZero_Then_ExpectZero() {
-        assertThat(Fraction.of(0).plus(Fraction.of(0))).isEqualTo(Fraction.of(0));
-    }
-    
-    @Test
     public void When_ZeroDenominator_Then_IllegalArgumentException() {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("The denominator cannot be zero");
@@ -70,4 +65,23 @@ public class FractionTest {
         assertThat(Fraction.of(-7, -8)).isEqualTo(Fraction.of(7, 8));
     }
     
+    @Test
+    public void When_ZeroPlusZero_Then_ExpectZero() {
+        assertThat(Fraction.of(0).plus(Fraction.of(0))).isEqualTo(Fraction.of(0));
+    }
+    
+    @Test
+    public void When_AddPositiveWholeNumbers_Then_ResultAsExpected() {
+        assertThat(Fraction.of(1).plus(Fraction.of(1))).isEqualTo(Fraction.of(2));
+        assertThat(Fraction.of(3).plus(Fraction.of(5))).isEqualTo(Fraction.of(8));
+    }
+
+    @Test
+    public void When_AddWholeNumbersWithNegative_Then_ResultAsExpected() {
+        assertThat(Fraction.of(1).plus(Fraction.of(-1))).isEqualTo(Fraction.of(0));
+        assertThat(Fraction.of(5).plus(Fraction.of(-3))).isEqualTo(Fraction.of(2));
+        assertThat(Fraction.of(3).plus(Fraction.of(-5))).isEqualTo(Fraction.of(-2));
+        assertThat(Fraction.of(-5).plus(Fraction.of(3))).isEqualTo(Fraction.of(-2));
+    }
+
 }
