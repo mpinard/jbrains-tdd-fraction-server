@@ -91,7 +91,7 @@ public class Fraction {
         
         private SimpleFraction reduce() {
             SimpleFraction previous;
-            SimpleFraction reduced = this; 
+            SimpleFraction reduced = this;  // Initialized for use as first previous
             
             do {
                 previous = reduced;
