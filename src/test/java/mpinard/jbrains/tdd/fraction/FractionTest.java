@@ -103,7 +103,7 @@ public class FractionTest {
     public void When_AddTwoFractionsWithReduction_Then_ResultAsExpected() {
         assertThat(Fraction.of(1, 2).plus(Fraction.of(3, 4))).isEqualTo(Fraction.of(5, 4));
         assertThat(Fraction.of(1, 6).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(2, 3));
-//        assertThat(Fraction.of(1, 2).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 1));
+        assertThat(Fraction.of(1, 2).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 1));
     }
 
     @Test

@@ -16,9 +16,11 @@ public class Fraction {
         }
         
         final SimpleFraction reduced =
-            SimpleFraction.of(
-                isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator)),
-                Math.abs(denominator)).reduce();
+            SimpleFraction
+                .of(
+                    isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator)),
+                    Math.abs(denominator))
+                .reduce();
 
         this.numerator = reduced.numerator;
         this.denominator = reduced.denominator;
@@ -106,7 +108,7 @@ public class Fraction {
                 return this;
             }
             
-            final int maxDivisor = Math.min(Math.abs(numerator), denominator) / 2;
+            final int maxDivisor = Math.max(2, Math.min(Math.abs(numerator), denominator) / 2);
             
             for (int divisor = 2; divisor <= maxDivisor; divisor++) {
                 if (isDivisibleBy(divisor)) {
