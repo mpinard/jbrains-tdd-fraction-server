@@ -16,4 +16,9 @@ public class FractionTest {
         assertThat(Fraction.of(0).plus(Fraction.of(0))).isEqualTo(Fraction.of(0));
     }
     
+    @Test
+    public void When_ToStringOneHalf_Then_FormatIsAsExpected() {
+        assertThat(Fraction.of(1, 2).toString()).isEqualTo("1/2");
+    }
+    
 }

@@ -17,4 +17,9 @@ public class Fraction {
         return Fraction.of(numerator + addend.numerator, denominator);
     }
     
+    public String toString() {
+        return String.format("%s/%s", numerator, denominator);
+    }
+    
 }
+
