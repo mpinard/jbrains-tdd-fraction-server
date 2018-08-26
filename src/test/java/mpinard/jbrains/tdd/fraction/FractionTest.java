@@ -98,11 +98,11 @@ public class FractionTest {
     public void When_AddTwoFractionsWithoutReduction_Then_ResultAsExpected() {
         assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 15));
     }
-//    
-//    @Test
-//    public void When_AddTwoFractionsWithReduction_Then_ResultAsExpected() {
-//        assertThat(Fraction.of(1, 2).plus(Fraction.of(3, 4))).isEqualTo(Fraction.of(5, 4));
-//    }
+
+    @Test
+    public void When_AddTwoFractionsWithReduction_Then_ResultAsExpected() {
+        assertThat(Fraction.of(1, 2).plus(Fraction.of(3, 4))).isEqualTo(Fraction.of(5, 4));
+    }
     
 
 }

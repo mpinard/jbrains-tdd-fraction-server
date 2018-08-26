@@ -14,9 +14,14 @@ public class Fraction {
         if (denominator == 0) {
             throw new IllegalArgumentException("The denominator cannot be zero");
         }
+        
+        final SimpleFraction reduced =
+            SimpleFraction.of(
+                isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator)),
+                Math.abs(denominator)).reduce();
 
-        this.numerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
-        this.denominator = Math.abs(denominator);
+        this.numerator = reduced.numerator;
+        this.denominator = reduced.denominator;
     }
 
     public static Fraction of(final int wholeNumber) {
@@ -51,7 +56,11 @@ public class Fraction {
     private SimpleFraction toSimpleFraction() {
         return SimpleFraction.of(numerator, denominator);
     }
-    
+
+    /**
+     * Simpler version of {@link Fraction} that allows unreduced values for use in calculations, while {@code Fraction} will always reduce as
+     * as much as possible during creation.
+     */
     @Value(staticConstructor = "of")
     private static class SimpleFraction {
         private int numerator;
@@ -80,6 +89,13 @@ public class Fraction {
             return SimpleFraction.of(resolvedAugend.numerator + resolvedAddend.numerator, resolvedAugend.denominator);
         }
         
+        private SimpleFraction reduce() {
+            if (this.numerator % 2 == 0 && this.denominator % 2 == 0) {
+                return SimpleFraction.of(this.numerator / 2, this.denominator / 2);
+            }
+            
+            return this;
+        }
     }
     
 }
