@@ -90,11 +90,40 @@ public class Fraction {
         }
         
         private SimpleFraction reduce() {
-            if (this.numerator % 2 == 0 && this.denominator % 2 == 0) {
-                return SimpleFraction.of(this.numerator / 2, this.denominator / 2);
+            SimpleFraction previous;
+            SimpleFraction reduced = this; 
+            
+            do {
+                previous = reduced;
+                reduced = previous.reduceOnce();
+            } while (previous != reduced);
+            
+            return reduced;
+        }
+        
+        private SimpleFraction reduceOnce() {
+            if (denominator == 1 || Math.abs(numerator) <= 1) {
+                return this;
+            }
+            
+            final int maxDivisor = Math.min(Math.abs(numerator), denominator) / 2;
+            
+            for (int divisor = 2; divisor <= maxDivisor; divisor++) {
+                if (isDivisibleBy(divisor)) {
+                    return dividedBy(divisor);
+                }
             }
             
             return this;
+        }
+
+        private boolean isDivisibleBy(final int divisor) {
+            return (numerator % divisor == 0)
+                && (denominator % divisor == 0);
+        }
+
+        private SimpleFraction dividedBy(final int divisor) {
+            return SimpleFraction.of(numerator / divisor, denominator / divisor);
         }
     }
     
