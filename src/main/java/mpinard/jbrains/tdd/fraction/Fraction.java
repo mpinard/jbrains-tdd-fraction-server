@@ -1,13 +1,19 @@
 package mpinard.jbrains.tdd.fraction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@Value(staticConstructor = "of")
 public class Fraction {
-    private static final Logger logger = LoggerFactory.getLogger(Fraction.class);
-
-    public static void main(final String[] args) {
-        logger.info("In main...");
+    private int numerator;
+    private int denominator;
+    
+    public static Fraction of(final int wholeNumber) {
+        return Fraction.of(wholeNumber, 1);
     }
-
+    
+    public Fraction plus(final Fraction addend) {
+        return Fraction.of(0);
+    }
 }
