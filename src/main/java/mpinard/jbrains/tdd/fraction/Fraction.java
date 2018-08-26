@@ -92,6 +92,10 @@ public class Fraction {
         }
         
         private SimpleFraction reduce() {
+            if (numerator == 0) {
+                return SimpleFraction.of(0, 1);
+            } 
+            
             SimpleFraction previous;
             SimpleFraction reduced = this;  // Initialized for use as first previous
             

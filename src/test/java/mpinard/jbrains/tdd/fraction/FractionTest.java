@@ -71,7 +71,7 @@ public class FractionTest {
     @Test
     public void When_ZeroPlusZero_Then_ExpectZero() {
         assertThat(Fraction.of(0).plus(Fraction.of(0))).isEqualTo(Fraction.of(0));
-//        assertThat(Fraction.of(0, 2).plus(Fraction.of(0, 3))).isEqualTo(Fraction.of(0));
+        assertThat(Fraction.of(0, 2).plus(Fraction.of(0, 3))).isEqualTo(Fraction.of(0));
     }
     
     @Test
