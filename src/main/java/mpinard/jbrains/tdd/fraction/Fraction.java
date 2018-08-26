@@ -21,6 +21,10 @@ public class Fraction {
     
     @ConstructorProperties({"numerator", "denominator"})
     private Fraction(final int numerator, final int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("The denominator cannot be zero");
+        }
+        
         int resolvedNumerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
         int resolvedDenominator = Math.abs(denominator);
         

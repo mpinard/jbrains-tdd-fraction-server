@@ -17,6 +17,14 @@ public class FractionTest {
     }
     
     @Test
+    public void When_ZeroDenominator_Then_IllegalArgumentException() {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("The denominator cannot be zero");
+        
+        Fraction.of(1, 0);
+    }
+    
+    @Test
     public void Given_FractionWithDenominator_When_ToString_Then_FormatIsAsExpected() {
         assertThat(Fraction.of(1, 2).toString()).isEqualTo("1/2");
         assertThat(Fraction.of(3, 4).toString()).isEqualTo("3/4");
