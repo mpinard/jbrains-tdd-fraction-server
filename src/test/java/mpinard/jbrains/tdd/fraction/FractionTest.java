@@ -29,7 +29,11 @@ public class FractionTest {
         assertThat(Fraction.of(1).toString()).isEqualTo("1");
         assertThat(Fraction.of(5).toString()).isEqualTo("5");
     }
-    
-    
+
+    @Test
+    public void When_ContructorWithNegativeWholeNumber_Then_ResultIsNegative() {
+        assertThat(Fraction.of(-1)).isEqualTo(Fraction.of(-1));
+        assertThat(Fraction.of(-5)).isEqualTo(Fraction.of(-5));
+    }
     
 }
