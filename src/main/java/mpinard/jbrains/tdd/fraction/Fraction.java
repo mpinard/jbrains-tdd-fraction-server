@@ -3,14 +3,35 @@ package mpinard.jbrains.tdd.fraction;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 
+import java.beans.ConstructorProperties;
+
+@Value
 @Slf4j
-@Value(staticConstructor = "of")
 public class Fraction {
     private int numerator;
     private int denominator;
     
     public static Fraction of(final int wholeNumber) {
         return Fraction.of(wholeNumber, 1);
+    }
+
+    public static Fraction of(final int theNumerator, final int theDenominator) {
+        return new Fraction(theNumerator, theDenominator);
+    }
+    
+    @ConstructorProperties({"numerator", "denominator"})
+    private Fraction(final int numerator, final int denominator) {
+        int resolvedNumerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
+        int resolvedDenominator = Math.abs(denominator);
+        
+        this.numerator = resolvedNumerator;
+        this.denominator = resolvedDenominator;
+    }
+
+    private boolean isPositive(final int theNumerator, final int theDenominator) {
+        return theNumerator >= 0
+            ? theDenominator > 0
+            : theDenominator < 0;
     }
     
     public Fraction plus(final Fraction addend) {
