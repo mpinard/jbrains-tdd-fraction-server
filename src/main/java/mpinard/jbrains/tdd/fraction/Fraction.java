@@ -14,6 +14,7 @@ public class Fraction {
     }
     
     public Fraction plus(final Fraction addend) {
-        return Fraction.of(0);
+        return Fraction.of(numerator + addend.numerator, denominator);
     }
+    
 }
