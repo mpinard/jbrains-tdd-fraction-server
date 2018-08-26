@@ -1,12 +1,10 @@
 package mpinard.jbrains.tdd.fraction;
 
 import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
 
 import java.beans.ConstructorProperties;
 
 @Value
-@Slf4j
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -25,11 +23,8 @@ public class Fraction {
             throw new IllegalArgumentException("The denominator cannot be zero");
         }
         
-        int resolvedNumerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
-        int resolvedDenominator = Math.abs(denominator);
-        
-        this.numerator = resolvedNumerator;
-        this.denominator = resolvedDenominator;
+        this.numerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
+        this.denominator = Math.abs(denominator);
     }
 
     private boolean isPositive(final int theNumerator, final int theDenominator) {
