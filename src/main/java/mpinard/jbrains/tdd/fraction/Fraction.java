@@ -31,24 +31,25 @@ public class Fraction {
         return Fraction.of(simpleFraction.numerator, simpleFraction.denominator);
     }
 
+    public Fraction plus(final Fraction addend) {
+        return Fraction.from(this.toSimpleFraction().plus(addend.toSimpleFraction()));
+    }
+
+    @Override
+    public String toString() {
+        return denominator == 1
+            ? String.valueOf(numerator)
+            : String.format("%s/%s", numerator, denominator);
+    }
+
     private boolean isPositive(final int theNumerator, final int theDenominator) {
         return theNumerator >= 0
             ? theDenominator > 0
             : theDenominator < 0;
     }
     
-    public Fraction plus(final Fraction addend) {
-        return Fraction.from(this.toSimpleFraction().plus(addend.toSimpleFraction()));
-    }
-    
     private SimpleFraction toSimpleFraction() {
         return SimpleFraction.of(numerator, denominator);
-    }
-    
-    public String toString() {
-        return denominator == 1
-            ? String.valueOf(numerator)
-            : String.format("%s/%s", numerator, denominator);
     }
     
     @Value(staticConstructor = "of")
