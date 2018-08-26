@@ -82,6 +82,13 @@ public class FractionTest {
         assertThat(Fraction.of(5).plus(Fraction.of(-3))).isEqualTo(Fraction.of(2));
         assertThat(Fraction.of(3).plus(Fraction.of(-5))).isEqualTo(Fraction.of(-2));
         assertThat(Fraction.of(-5).plus(Fraction.of(3))).isEqualTo(Fraction.of(-2));
+        assertThat(Fraction.of(4).plus(Fraction.of(9))).isEqualTo(Fraction.of(13));
+        assertThat(Fraction.of(1).plus(Fraction.of(0))).isEqualTo(Fraction.of(1));
+    }
+    
+    @Test
+    public void When_AddWholeNumberToFraction_Then_ResultAsExpected() {
+        assertThat(Fraction.of(1).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(3, 2));
     }
 
 }

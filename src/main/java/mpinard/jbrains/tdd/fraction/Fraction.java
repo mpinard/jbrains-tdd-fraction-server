@@ -39,7 +39,26 @@ public class Fraction {
     }
     
     public Fraction plus(final Fraction addend) {
-        return Fraction.of(numerator + addend.numerator, denominator);
+        final Fraction resolvedAugend;
+        final Fraction resolvedAddend;
+        
+        if (denominator == addend.denominator) {
+            resolvedAugend = this;
+            resolvedAddend = addend;
+        } else {
+            final int commonDenominator = this.denominator * addend.denominator;
+            
+            resolvedAugend =
+                Fraction.of(
+                    this.numerator * addend.denominator,
+                    commonDenominator);
+            resolvedAddend =
+                Fraction.of(
+                    addend.numerator * this.denominator,
+                    commonDenominator);
+        }
+            
+        return Fraction.of(resolvedAugend.numerator + resolvedAddend.numerator, resolvedAugend.denominator);
     }
     
     public String toString() {
