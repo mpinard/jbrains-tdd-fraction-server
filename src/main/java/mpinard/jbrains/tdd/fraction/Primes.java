@@ -1,9 +1,6 @@
 package mpinard.jbrains.tdd.fraction;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -39,7 +36,36 @@ final class Primes implements Iterable<Integer> {
     }
     
     public Primes expandTo(final int target) {
-        return this;
+        final int maxExistingPrime = primes.get(primes.size() - 1);
+        
+        if (maxExistingPrime >= target) {
+            return this;
+        }
+        
+        final List<Integer> newPrimes = new ArrayList<>(primes);
+        
+        for (int i = maxExistingPrime + 1; i <= target; i++) {
+            if (isPrime(newPrimes, i)) {
+               newPrimes.add(i);
+            }
+        }
+        
+        return new Primes(Collections.unmodifiableList(newPrimes));
     }
     
+    private boolean isPrime(final List<Integer> existingPrimes, final int candidate) {
+        final int maxDivisor = candidate / 2;
+        
+        for (final int prime : existingPrimes) {
+            if (prime > maxDivisor) {
+                return true;
+            } 
+            
+            if (candidate % prime == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
 }
