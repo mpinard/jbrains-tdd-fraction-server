@@ -4,6 +4,7 @@ import lombok.Value;
 import lombok.experimental.NonFinal;
 
 import java.beans.ConstructorProperties;
+import java.lang.ref.WeakReference;
 
 @Value
 public class Fraction {
@@ -11,7 +12,7 @@ public class Fraction {
     private int denominator;
 
     @NonFinal
-    private static Primes primes = Primes.create();
+    private static WeakReference<Primes> primes = new WeakReference<>(Primes.create());
     
     @ConstructorProperties({"numerator", "denominator"})
     private Fraction(final int numerator, final int denominator) {
@@ -118,8 +119,7 @@ public class Fraction {
             
             final int maxDivisor = Math.min(Math.abs(numerator), denominator);
             
-            final Primes expandedPrimes = Fraction.primes.expandTo(maxDivisor);
-            Fraction.primes = expandedPrimes;
+            final Primes expandedPrimes = primesExpandedTo(maxDivisor);
             
             for (int divisor : expandedPrimes) {
                 if (divisor > maxDivisor) {
@@ -134,6 +134,22 @@ public class Fraction {
             return this;
         }
 
+        private Primes primesExpandedTo(final int target) {
+            Primes initialPrimes = Fraction.primes.get();
+
+            if (initialPrimes == null) {
+                initialPrimes = Primes.create();
+            }
+            
+            final Primes expandedPrimes = initialPrimes.expandTo(target);
+            
+            if (expandedPrimes != initialPrimes) {
+                Fraction.primes = new WeakReference<>(expandedPrimes);
+            }
+            
+            return expandedPrimes;
+        }
+        
         private boolean isDivisibleBy(final int divisor) {
             return (numerator % divisor == 0)
                 && (denominator % divisor == 0);
