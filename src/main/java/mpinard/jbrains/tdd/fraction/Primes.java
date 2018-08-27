@@ -8,7 +8,7 @@ final class Primes implements Iterable<Integer> {
     
     private final List<Integer> primes;
 
-    public static Primes create() {
+    static Primes create() {
         return new Primes(Arrays.asList(2, 3, 5, 7));
     }
     
@@ -31,11 +31,11 @@ final class Primes implements Iterable<Integer> {
         return primes.spliterator();
     }
     
-    public Stream<Integer> stream() {
+    Stream<Integer> stream() {
         return primes.stream();    
     }
     
-    public Primes expandTo(final int target) {
+    Primes expandTo(final int target) {
         final int maxExistingPrime = primes.get(primes.size() - 1);
         
         if (maxExistingPrime >= target) {

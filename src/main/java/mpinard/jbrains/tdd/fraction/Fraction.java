@@ -1,6 +1,7 @@
 package mpinard.jbrains.tdd.fraction;
 
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.beans.ConstructorProperties;
 
@@ -9,6 +10,9 @@ public class Fraction {
     private int numerator;
     private int denominator;
 
+    @NonFinal
+    private static Primes primes = Primes.create();
+    
     @ConstructorProperties({"numerator", "denominator"})
     private Fraction(final int numerator, final int denominator) {
         if (denominator == 0) {
@@ -114,7 +118,13 @@ public class Fraction {
             
             final int maxDivisor = Math.max(2, Math.min(Math.abs(numerator), denominator) / 2);
             
-            for (int divisor = 2; divisor <= maxDivisor; divisor++) {
+            Fraction.primes = Fraction.primes.expandTo(maxDivisor);
+            
+            for (int divisor : Fraction.primes) {
+                if (divisor > maxDivisor) {
+                    return this;
+                }
+                
                 if (isDivisibleBy(divisor)) {
                     return dividedBy(divisor);
                 }
