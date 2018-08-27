@@ -5,11 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
-class Primes implements Iterable<Integer> {
+final class Primes implements Iterable<Integer> {
     
-    private List<Integer> primes = Arrays.asList(2, 3, 5, 7);
+    private final List<Integer> primes;
 
+    public static Primes create() {
+        return new Primes(Arrays.asList(2, 3, 5, 7));
+    }
+    
+    private Primes(final List<Integer> primes) {
+       this.primes = primes;
+    }
+    
     @Override
     public Iterator<Integer> iterator() {
         return primes.iterator();
@@ -25,7 +34,12 @@ class Primes implements Iterable<Integer> {
         return primes.spliterator();
     }
     
+    public Stream<Integer> stream() {
+        return primes.stream();    
+    }
+    
     public Primes expandTo(final int target) {
         return this;
     }
+    
 }
