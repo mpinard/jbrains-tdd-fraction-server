@@ -46,6 +46,18 @@ public class PrimesTest {
     }
 
     @Test
+    public void Given_Primes_When_ExpandedToNegative_Then_SamePrimesReturned() {
+        final Primes originalPrimes = Primes.create();
+        assertThat(originalPrimes.expandTo(-1)).isSameAs(originalPrimes);
+    }
+
+    @Test
+    public void Given_Primes_When_ExpandedToZero_Then_SamePrimesReturned() {
+        final Primes originalPrimes = Primes.create();
+        assertThat(originalPrimes.expandTo(0)).isSameAs(originalPrimes);
+    }
+
+    @Test
     public void Given_Primes_When_ExpandToLessThanCurrentMax_Then_SamePrimesReturned() {
         final Primes originalPrimes = Primes.create();
         assertThat(originalPrimes.expandTo(5)).isSameAs(originalPrimes);
