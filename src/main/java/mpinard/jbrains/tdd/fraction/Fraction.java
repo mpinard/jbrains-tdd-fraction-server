@@ -118,9 +118,10 @@ public class Fraction {
             
             final int maxDivisor = Math.max(2, Math.min(Math.abs(numerator), denominator) / 2);
             
-            Fraction.primes = Fraction.primes.expandTo(maxDivisor);
+            final Primes expandedPrimes = Fraction.primes.expandTo(maxDivisor);
+            Fraction.primes = expandedPrimes;
             
-            for (int divisor : Fraction.primes) {
+            for (int divisor : expandedPrimes) {
                 if (divisor > maxDivisor) {
                     return this;
                 }
