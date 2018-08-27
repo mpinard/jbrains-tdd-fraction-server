@@ -74,21 +74,13 @@ public class Fraction {
         private int denominator;
         
         private SimpleFraction plus(final SimpleFraction addend) {
-            final int resolvedAugendNumerator;
-            final int resolvedAddendNumerator;
-            final int resolvedDenominator;
-
             if (denominator == addend.denominator) {
-                resolvedAugendNumerator = numerator;
-                resolvedAddendNumerator = addend.numerator;
-                resolvedDenominator = denominator;
-            } else {
-                resolvedAugendNumerator = this.numerator * addend.denominator;
-                resolvedAddendNumerator = addend.numerator * this.denominator;
-                resolvedDenominator = this.denominator * addend.denominator;
-            }
-
-            return SimpleFraction.of(resolvedAugendNumerator + resolvedAddendNumerator, resolvedDenominator);
+                return SimpleFraction.of(numerator + addend.numerator, denominator);
+            } 
+            
+            return SimpleFraction.of(
+                (this.numerator * addend.denominator) + (addend.numerator * this.denominator),
+                this.denominator * addend.denominator);
         }
         
         private SimpleFraction reduce() {
