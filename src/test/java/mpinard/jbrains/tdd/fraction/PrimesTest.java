@@ -43,12 +43,23 @@ public class PrimesTest {
     public void Given_Primes_When_ExpandToCurrentMax_Then_SamePrimesReturned() {
         final Primes originalPrimes = Primes.create();
         assertThat(originalPrimes.expandTo(7)).isSameAs(originalPrimes);
-        
     }
-    
+
+    @Test
+    public void Given_Primes_When_ExpandToLessThanCurrentMax_Then_SamePrimesReturned() {
+        final Primes originalPrimes = Primes.create();
+        assertThat(originalPrimes.expandTo(5)).isSameAs(originalPrimes);
+    }
+
     @Test
     public void When_ExpandToHigherValue_Than_PrimesExtendedToThatValue() {
         assertThat(Primes.create().expandTo(13).stream().collect(Collectors.toList())).isEqualTo(Arrays.asList(2, 3, 5, 7, 11, 13));
     }
     
+    @Test
+    public void Given_ExpandedPrimes_When_ExpandedFurther_Then_ExpandedToThatValue() {
+        assertThat(Primes.create().expandTo(13).expandTo(23).stream().collect(Collectors.toList()))
+            .isEqualTo(Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23));
+    }
+
 }
