@@ -116,7 +116,7 @@ public class Fraction {
                 return this;
             }
             
-            final int maxDivisor = Math.max(2, Math.min(Math.abs(numerator), denominator) / 2);
+            final int maxDivisor = Math.min(Math.abs(numerator), denominator);
             
             final Primes expandedPrimes = Fraction.primes.expandTo(maxDivisor);
             Fraction.primes = expandedPrimes;

@@ -20,6 +20,35 @@ public class FractionTest {
     }
     
     @Test
+    public void When_FractionCreated_Then_FractionReduced() {
+        final Fraction twoFourths = Fraction.of(2, 4);
+        assertThat(twoFourths).isEqualTo(Fraction.of(1, 2));
+        assertThat(twoFourths.getNumerator()).isEqualTo(1);
+        assertThat(twoFourths.getDenominator()).isEqualTo(2);
+
+        final Fraction threeNineths = Fraction.of(3, 9);
+        assertThat(threeNineths).isEqualTo(Fraction.of(1, 3));
+        assertThat(threeNineths.getNumerator()).isEqualTo(1);
+        assertThat(threeNineths.getDenominator()).isEqualTo(3);
+
+        final Fraction nineThirds = Fraction.of(9, 3);
+        assertThat(nineThirds).isEqualTo(Fraction.of(3));
+        assertThat(nineThirds.getNumerator()).isEqualTo(3);
+        assertThat(nineThirds.getDenominator()).isEqualTo(1);
+        
+        final Fraction elevenElevenths = Fraction.of(11, 11);
+        assertThat(elevenElevenths).isEqualTo(Fraction.of(1));
+        assertThat(elevenElevenths.getNumerator()).isEqualTo(1);
+        assertThat(elevenElevenths.getDenominator()).isEqualTo(1);
+        
+        final int bigMultiplier = 2 * 2 * 3 * 5 * 5 * 7 * 13;
+        final Fraction bigFractionReduced = Fraction.of(bigMultiplier * 2, bigMultiplier * 3);
+        assertThat(bigFractionReduced).isEqualTo(Fraction.of(2, 3));
+        assertThat(bigFractionReduced.getNumerator()).isEqualTo(2);
+        assertThat(bigFractionReduced.getDenominator()).isEqualTo(3);
+    }
+    
+    @Test
     public void Given_FractionWithDenominator_When_ToString_Then_FormatIsAsExpected() {
         assertThat(Fraction.of(1, 2).toString()).isEqualTo("1/2");
         assertThat(Fraction.of(3, 4).toString()).isEqualTo("3/4");
