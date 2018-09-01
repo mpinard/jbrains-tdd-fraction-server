@@ -21,13 +21,18 @@ public class GcdTest {
     @Test
     public void Given_TwoNumbersWithCommonFactor_Then_GcdIsLargestCommonFactor() {
         assertThat(gcd(12, 18)).isEqualTo(6);
-        
     }
 
     private static int gcd(final int value1, final int value2) {
-        if (value1 == 12 && value2 == 18) {
-            return 6;
+        int a = value1;
+        int b = value2;
+        
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
         }
-        return 1;
+        
+        return a;
     }
 }
