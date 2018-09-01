@@ -19,6 +19,14 @@ public class GcdTest {
     }
 
     @Test
+    public void Given_AnyNumberAndItself_Then_GcdIsTheNumber() {
+        assertThat(gcd(1, 1)).isEqualTo(1);
+        assertThat(gcd(5, 5)).isEqualTo(5);
+        assertThat(gcd(13, 13)).isEqualTo(13);
+        assertThat(gcd(128, 128)).isEqualTo(128);
+    }
+    
+    @Test
     public void Given_TwoNumbersWithCommonFactor_Then_GcdIsLargestCommonFactor() {
         assertThat(gcd(12, 18)).isEqualTo(6);
     }
