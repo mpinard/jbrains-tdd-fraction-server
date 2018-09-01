@@ -5,12 +5,12 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for Greatest Common Denominator.
+ * Tests for Greatest Common Divisor.
  */
 public class GcdTest {
 
     @Test
-    public void Given_OneAndAnyNumber_Then_GcdIsOne() {
+    public void Given_OneAndAnyNumber_When_Gcd_Expect_One() {
         assertThat(gcd(1, 1)).isEqualTo(1);
         assertThat(gcd(1, 3)).isEqualTo(1);
         assertThat(gcd(3, 1)).isEqualTo(1);
@@ -19,7 +19,7 @@ public class GcdTest {
     }
 
     @Test
-    public void Given_AnyNumberAndItself_Then_GcdIsTheNumber() {
+    public void Given_AnyNumberAndItself_When_Gcd_Expect_TheNumber() {
         assertThat(gcd(1, 1)).isEqualTo(1);
         assertThat(gcd(5, 5)).isEqualTo(5);
         assertThat(gcd(13, 13)).isEqualTo(13);
@@ -27,8 +27,9 @@ public class GcdTest {
     }
     
     @Test
-    public void Given_TwoNumbersWithCommonFactor_Then_GcdIsLargestCommonFactor() {
+    public void Given_TwoNumbersWithCommonFactor_When_Gcd_Expect_LargestCommonFactor() {
         assertThat(gcd(12, 18)).isEqualTo(6);
+        assertThat(gcd(18, 27)).isEqualTo(9);
     }
 
     @Test
