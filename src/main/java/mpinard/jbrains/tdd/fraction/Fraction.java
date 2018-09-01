@@ -1,10 +1,8 @@
 package mpinard.jbrains.tdd.fraction;
 
 import lombok.Value;
-import lombok.experimental.NonFinal;
 
 import java.beans.ConstructorProperties;
-import java.lang.ref.WeakReference;
 
 @Value
 public class Fraction {
@@ -45,6 +43,10 @@ public class Fraction {
 
     public Fraction minus(final Fraction other) {
         return plus(Fraction.of(-other.numerator, other.denominator));
+    }
+
+    public Fraction times(final Fraction other) {
+        return Fraction.of(numerator * other.numerator, denominator * other.denominator);
     }
 
     @Override
