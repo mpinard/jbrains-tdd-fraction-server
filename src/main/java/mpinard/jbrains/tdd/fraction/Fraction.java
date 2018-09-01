@@ -15,7 +15,7 @@ public class Fraction {
             throw new IllegalArgumentException("The denominator cannot be zero");
         }
 
-        int signedNumerator = isPositive(numerator, denominator) ? Math.abs(numerator) : Math.negateExact(Math.abs(numerator));
+        int signedNumerator = isPositive(numerator, denominator) ? Math.abs(numerator) : -Math.abs(numerator);
         int signedDenominator = Math.abs(denominator);
         int greatestCommonDivisor = Numbers.gcd(signedNumerator, signedDenominator);
         
@@ -47,6 +47,14 @@ public class Fraction {
 
     public Fraction times(final Fraction other) {
         return Fraction.of(numerator * other.numerator, denominator * other.denominator);
+    }
+
+    public Fraction dividedBy(final Fraction divisor) {
+        if (divisor.equals(Fraction.of(0))) {
+            throw new ArithmeticException("/ by zero");
+        }
+        
+        return Fraction.of(numerator * divisor.denominator, denominator * divisor.numerator);
     }
 
     @Override
