@@ -2,6 +2,7 @@ package mpinard.jbrains.tdd.fraction;
 
 import org.junit.Test;
 
+import static mpinard.jbrains.tdd.fraction.Numbers.gcd;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -81,20 +82,4 @@ public class GcdTest {
         assertThat(gcd(23, -0)).isEqualTo(23);
     }
 
-    private static int gcd(final int value1, final int value2) {
-        if (Math.abs(value1) == 0 && Math.abs(value2) == 0) {
-            return 1;
-        }
-        
-        int a = value1;
-        int b = value2;
-        
-        while (b != 0) {
-            int t = b;
-            b = a % b;
-            a = t;
-        }
-        
-        return Math.abs(a);
-    }
 }
