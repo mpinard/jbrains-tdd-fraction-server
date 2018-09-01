@@ -43,11 +43,15 @@ public class Fraction {
             this.denominator * addend.denominator);
     }
 
+    public Fraction minus(final Fraction other) {
+        return plus(Fraction.of(-other.numerator, other.denominator));
+    }
+
     @Override
     public String toString() {
         return denominator == 1
             ? String.valueOf(numerator)
-            : String.format("%s/%s", numerator, denominator);
+            : String.format("%d/%d", numerator, denominator);
     }
 
     private boolean isPositive(final int theNumerator, final int theDenominator) {
@@ -55,5 +59,6 @@ public class Fraction {
             ? theDenominator > 0
             : theDenominator < 0;
     }
+
 }
 
