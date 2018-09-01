@@ -37,6 +37,7 @@ public class GcdTest {
         assertThat(gcd(5, 7)).isEqualTo(1);
         assertThat(gcd(13, 23)).isEqualTo(1);
         assertThat(gcd(36, 19)).isEqualTo(1);
+        assertThat(gcd(1279, 1181)).isEqualTo(1); // large primes
     }
 
     private static int gcd(final int value1, final int value2) {
