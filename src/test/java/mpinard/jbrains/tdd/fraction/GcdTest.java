@@ -34,6 +34,8 @@ public class GcdTest {
     @Test
     public void Given_TwoNumbersWithNoCommonDenominator_When_Gcd_Then_ResultIsOne() {
         assertThat(gcd(5, 7)).isEqualTo(1);
+        assertThat(gcd(13, 23)).isEqualTo(1);
+        assertThat(gcd(36, 19)).isEqualTo(1);
     }
 
     private static int gcd(final int value1, final int value2) {
